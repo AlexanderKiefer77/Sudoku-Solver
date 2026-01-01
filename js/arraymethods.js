@@ -17,6 +17,22 @@ export function hasContradiction(row, col, val) {
     );
 }
 
+function rowValues(row) {
+    return array[row];
+}
+
+function columnValues(col) {
+    const list = [];
+    for (let row = 0; row < 9; row++) {
+        list.push(array[row][col]);
+    }
+    return list;
+}
+
+function boxValues() {
+    return
+}
+
 export function getUnsolvedPosition() {
     const row = array.findIndex((row) => row.some((x) => x == 0));
     if (row == -1) {
