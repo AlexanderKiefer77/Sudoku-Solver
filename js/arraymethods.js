@@ -29,8 +29,16 @@ function columnValues(col) {
     return list;
 }
 
-function boxValues() {
-    return
+function boxValues(row, col) {
+    const boxRow = row - (row % 3);
+    const boxCol = col - (col % 3);
+    const list = [];
+    for (let r = boxRow; r < boxRow; r++) {
+        for (let c = boxCol; c < boxCol + 3; c++) {
+            list.push(array[r][c]);
+        }
+    }
+    return list;
 }
 
 export function getUnsolvedPosition() {
