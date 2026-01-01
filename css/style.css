@@ -1,6 +1,6 @@
 :root {
     --main-color: teal;
-
+    --cell-size: min(45px, 8vw);
 }
 
 * {
@@ -81,19 +81,34 @@ button:focus {
 
 /* sudoku */
 #sudoku {
-    border: 1px solid red;
+    margin: 0 auto;
+    --spacing: 20px;
+    --size: calc(var(--spacing) + 9 * var(--cell-size));
+    width: var(--size);
+    height: var(--size);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: #666;
+    gap: 2px;
 }
 
 .block {
-    width: 100px;
-    height: 100px;
-    margin: 5px;
-    background: chartreuse;
+    --spacing: 4px;
+    --size: calc(var(--spacing) + 3 * var(--cell-size));
+    width: var(--size);
+    height: var(--size);
+    background: #bbb;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1px;
 }
 
 .cell {
-    width: 10px;
-    height: 10px;
-    margin: 2px;
-    background: tomato;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background: white;
 }
