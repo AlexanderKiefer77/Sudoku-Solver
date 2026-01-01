@@ -1,4 +1,5 @@
 import { getUnsolvedPosition, hasContradiction, setValue } from "./arraymethods.js";
+import { delay } from "./controls.js";
 import { sleep } from "./utils.js";
 
 let solving = false;
@@ -39,7 +40,7 @@ export async function startSolve() {
  */
 
 async function solveSudoku() {
-    await sleep(1000);
+    if (delay) await sleep(delay);
     const pos = getUnsolvedPosition();
     if (!pos) return true;
     const { row, col } = pos;
