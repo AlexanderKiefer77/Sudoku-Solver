@@ -25,6 +25,28 @@ export function startSolve() {
     stopSolve();
 }
 
-function solveSudoku() {
 
+/**
+ * IDEE: Wir lösen das Rätsel rekursiv !
+ * 
+ * Ein Sudoku ist lösbar, wenn es entweder keine leere Zelle gibt,
+ * oder aber es eine leere Zelle gibt, für die man einen Wert von 1 bis 9 findet,
+ * der keinen Sudoku-Regeln widerspricht und mit dem das Sudoku gelöst werden kann.
+ * Anderfalls muss diese Zelle leer bleiben.
+ */
+
+function solveSudoku() {
+    const pos = getUnsolvedPosition();
+    if (!pos) return true;
+    const { row, col } = pos;
+    for (let val = 1; val <= 9; val++) {
+        if (!hasContradiction(row, col, val)) {
+            setValue(row, col, val);
+            if (solveSudoku()) {
+                return true;
+            }
+        }
+    }
+    setValue(row, col, 0);
+    return false;
 }

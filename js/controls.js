@@ -8,7 +8,7 @@ export function enableControls() {
 }
 
 function clearSudoku() {
-    $(".cell").val("");
+    $(".cell").val("").removeClass("fixed");
     $("#info").text("");
     resetArray();
 }
