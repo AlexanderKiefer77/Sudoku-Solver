@@ -1,4 +1,5 @@
 import { getUnsolvedPosition, hasContradiction, setValue } from "./arraymethods.js";
+import { sleep } from "./utils.js";
 
 let solving = false;
 
@@ -6,7 +7,7 @@ function stopSolve() {
     solving = false;
 }
 
-export function startSolve() {
+export async function startSolve() {
     solving = true;
     $(".cell")
         .filter(function () {
@@ -16,7 +17,7 @@ export function startSolve() {
     $("#info").text("Solving...");
     $(".cell, #clearBtn").prop("disabled", true);
     $("#sudoku").addClass("solving");
-    const solution = solveSudoku();
+    const solution = await solveSudoku();
     if (solution == true) {
         $("#info").text("The Sudoku is solved");
     } else if (solution == false) {
@@ -37,14 +38,15 @@ export function startSolve() {
  * Anderfalls muss diese Zelle leer bleiben.
  */
 
-function solveSudoku() {
+async function solveSudoku() {
+    await sleep(1000);
     const pos = getUnsolvedPosition();
     if (!pos) return true;
     const { row, col } = pos;
     for (let val = 1; val <= 9; val++) {
         if (!hasContradiction(row, col, val)) {
             setValue(row, col, val);
-            if (solveSudoku()) {
+            if (await solveSudoku()) {
                 return true;
             }
         }
