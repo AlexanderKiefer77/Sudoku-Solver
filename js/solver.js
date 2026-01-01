@@ -1,3 +1,5 @@
+import { getUnsolvedPosition, hasContradiction, setValue } from "./arraymethods.js";
+
 let solving = false;
 
 function stopSolve() {

@@ -1,4 +1,4 @@
-import { array } from "./arraymethods.js";
+import { array, hasContradiction, setValue } from "./arraymethods.js";
 
 export function addBlocks() {
     for (let row = 0; row < 3; row++) {
@@ -31,21 +31,34 @@ export function addCells() {
                         $(this).val(val.substring(1));
                     }
                     val = $(this).val();
+                    let contra;
                     if (
                         val == parseInt(val) &&
                         val >= 1 &&
                         val <= 9
-                    ) {
+                    ) { // bei Eingabe kontrollieren ob zulässige Eingabe
+                        contra = hasContradiction(row, col, parseInt(val));
+                        if (!contra) {
+                            array[row][col] = parseInt(val);
+                        } else {
+                            setValue(row, col, 0);
+                            $("#info").text("This number is not allowed");
+                            setTimeout(() => {
+                                $("#info").text("");
+                            }, 1000);
+                        }
                         array[row][col] = parseInt(val);
                     } else {
                         $(this).val("");
                         array[row][col] = 0;
                     }
                     // console.table(array);
-                    if (col < 8) {
-                        $(`#cell${row}_${col+1}`).focus();
-                    } else if (row < 8) {
-                        $(`#cell${row+1}_${0}`).focus();
+                    if (!contra) {
+                        if (col < 8) {
+                            $(`#cell${row}_${col + 1}`).focus();
+                        } else if (row < 8) {
+                            $(`#cell${row + 1}_${0}`).focus();
+                        }
                     }
                 });
         }
