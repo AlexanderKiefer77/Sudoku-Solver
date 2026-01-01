@@ -13,13 +13,15 @@ export function enableControls() {
 function decreaseDelay() {
     if (delay < 10) {
         delay = 0;
-        $("#fasterBtn").prob("disabled", true);
+        $("#fasterBtn").prop("disabled", true);
+    } else {
+        delay /= 2;
     }
-    delay /= 2;
 }
 
 function increaseDelay() {
-    delay == 0 ? delay = 10 : (delay *= 2);
+    delay == 0 ? (delay = 10) : (delay *= 2);
+    $("#fasterBtn").prop("disabled", false);
 }
 
 function clearSudoku() {

@@ -44,7 +44,10 @@ input[type="number"] {
 
 /* header */
 header {
-    padding: 50px 10px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
@@ -57,6 +60,7 @@ h1 {
 
 /* main */
 main {
+    height: calc(100vh - 180px);
     padding: 0px 10px;
     text-align: center;
 }
@@ -149,4 +153,12 @@ button:focus {
 
 .cell.fixed {
     background: var(--fixed-color);
+}
+
+/* footer */
+footer {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
