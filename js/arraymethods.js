@@ -18,3 +18,7 @@ export function getUnsolvedPosition() {
     return { row, col };
 }
 
+export function setValue(row, col, val) {
+    array[row][col] = val;
+    $(`#cell${row}_${col}`).val(val >= 1 ? val : "");
+}
