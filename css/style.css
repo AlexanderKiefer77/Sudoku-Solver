@@ -1,6 +1,10 @@
 :root {
     --main-color: teal;
+    --main-light-color: rgb(55, 156, 156);
     --cell-size: min(45px, 8vw);
+    --cell-font-size: calc((0.9) * var(--cell-size));
+    --cell-border-color: #bbb;
+    --block-border-color: #666;
 }
 
 * {
@@ -24,6 +28,17 @@ button {
     border: none;
     background: inherit;
     color: inherit;
+}
+
+/* damit an den Zahlenfeldern kein spin button angezeigt wird */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 
 /* header */
@@ -52,7 +67,7 @@ main {
 
 button {
     padding: 6px 12px;
-    background-color: var(--main-color);
+    background: linear-gradient(var(--main-color), var(--main-light-color));
     color: white;
     cursor: pointer;
     margin: 5px;
@@ -90,8 +105,10 @@ button:focus {
     align-content: center;
     justify-content: center;
     flex-wrap: wrap;
-    background: #666;
+    background: var(--block-border-color);
     gap: 2px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: var(--cell-font-size);
 }
 
 .block {
@@ -99,7 +116,7 @@ button:focus {
     --size: calc(var(--spacing) + 3 * var(--cell-size));
     width: var(--size);
     height: var(--size);
-    background: #bbb;
+    background: var(--cell-border-color);
     display: flex;
     align-content: center;
     justify-content: center;
@@ -111,4 +128,10 @@ button:focus {
     width: var(--cell-size);
     height: var(--cell-size);
     background: white;
+    text-align: center;
+}
+
+.cell:focus {
+    background: var(--cell-border-color);
+    ;
 }
