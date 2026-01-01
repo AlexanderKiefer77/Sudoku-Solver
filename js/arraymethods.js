@@ -51,6 +51,6 @@ export function getUnsolvedPosition() {
 }
 
 export function setValue(row, col, val) {
-    array[row][col] = val;
+    array[row][col] = parseInt(val);
     $(`#cell${row}_${col}`).val(val >= 1 ? val : "");
 }
