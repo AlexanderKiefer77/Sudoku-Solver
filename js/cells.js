@@ -36,7 +36,7 @@ export function addCells() {
                         val >= 1 &&
                         val <= 9
                     ) {
-                        array[row][col] = val;
+                        array[row][col] = parseInt(val);
                     } else {
                         $(this).val("");
                         array[row][col] = 0;
