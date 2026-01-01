@@ -32,23 +32,24 @@ export function addCells() {
                         $(this).val(val.substring(1));
                     }
                     val = $(this).val();
-                    let contra;
+                    let contra = false;
                     if (
                         val == parseInt(val) &&
                         val >= 1 &&
                         val <= 9
                     ) { // bei Eingabe kontrollieren ob zulässige Eingabe
                         contra = hasContradiction(row, col, parseInt(val));
-                        if (!contra) {
-                            array[row][col] = parseInt(val);
-                        } else {
+                        if (contra) {
+                            //array[row][col] = parseInt(val);
+                            //} else {
                             setValue(row, col, 0);
                             $("#info").text("This number is not allowed");
                             setTimeout(() => {
                                 $("#info").text("");
                             }, 1000);
+                        } else {
+                            array[row][col] = parseInt(val);
                         }
-                        array[row][col] = parseInt(val);
                     } else {
                         $(this).val("");
                         array[row][col] = 0;
