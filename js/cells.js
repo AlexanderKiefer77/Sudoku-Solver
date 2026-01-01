@@ -25,6 +25,7 @@ export function addCells() {
                     // array[row][col] = $(this).val();
                     // console.table(array);
 
+                    $(".cell").removeClass("fixed");
                     // definiert die zulässige Eingabe in den Feldern
                     let val = $(this).val();
                     if (val.length >= 2) {
