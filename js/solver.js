@@ -4,11 +4,16 @@ import { sleep } from "./utils.js";
 
 let solving = false;
 
-function stopSolve() {
-    solving = false;
+export function toggleSolve() {
+    solving ? stopSolve() : startSolve();
 }
 
-export async function startSolve() {
+function stopSolve() {
+    solving = false;
+    $("#solveBtn").text("Solve");
+}
+
+async function startSolve() {
     solving = true;
     $(".cell")
         .filter(function () {
@@ -16,6 +21,7 @@ export async function startSolve() {
         })
         .addClass("fixed");
     $("#info").text("Solving...");
+    $("#solveBtn").text("Stop");
     $(".cell, #clearBtn").prop("disabled", true);
     $("#sudoku").addClass("solving");
     const solution = await solveSudoku();
@@ -23,6 +29,8 @@ export async function startSolve() {
         $("#info").text("The Sudoku is solved");
     } else if (solution == false) {
         $("#info").text("The Sudoku cannot be solved");
+    } else if (solution == "stopped") {
+         $("#info").text("");
     }
     $(".cell, #clearBtn").prop("disabled", false);
     $("#sudoku").removeClass("solving");
@@ -47,7 +55,8 @@ async function solveSudoku() {
     for (let val = 1; val <= 9; val++) {
         if (!hasContradiction(row, col, val)) {
             setValue(row, col, val);
-            if (await solveSudoku()) {
+            if (!solving) return "stopped";
+            if (await solveSudoku() == true) {
                 return true;
             }
         }

@@ -1,11 +1,11 @@
 import { resetArray } from "./arraymethods.js";
-import { startSolve } from "./solver.js";
+import { toggleSolve } from "./solver.js";
 
 export let delay = 10;
 
 export function enableControls() {
     $("#clearBtn").on("click", clearSudoku);
-    $("#solveBtn").on("click", startSolve);
+    $("#solveBtn").on("click", toggleSolve);
     $("#fasterBtn").on("click", decreaseDelay);
     $("#slowerBtn").on("click", increaseDelay);
 }
