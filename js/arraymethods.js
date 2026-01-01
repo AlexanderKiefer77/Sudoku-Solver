@@ -9,6 +9,14 @@ export function resetArray() {
             .fill(0));            // Füllt jede Zelle mit dem Wert 0
 }
 
+export function hasContradiction(row, col, val) {
+    return (
+        rowValues(row).includes(val) ||
+        columnValues(col).includes(val) ||
+        boxValues(row, col).includes(val)
+    );
+}
+
 export function getUnsolvedPosition() {
     const row = array.findIndex((row) => row.some((x) => x == 0));
     if (row == -1) {
